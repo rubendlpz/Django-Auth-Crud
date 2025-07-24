@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<main>
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h1 class="text-center display-1">Tasks</h1>
+            <ul class="list-group">
+                {% for task in tasks %}
+                <a class="list-group-item" href="{% url 'taskform_edit' task.id %}">
+                    <p class="h5">
+                        {{ task.title }}
+                    </p>
+                    <p>{{ task.description }}</p>
+                    <p>
+                        {% if task.completed %}
+                        <span class="badge bg-success">Completada</span>
+                        {% else %}
+                        <span class="badge bg-warning">Pendiente</span>
+                        {% endif %}
+                    </p>
+                </a>
+                {% empty %}
+                <li>No hay tareas disponibles.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</main>
+{% endblock %}
